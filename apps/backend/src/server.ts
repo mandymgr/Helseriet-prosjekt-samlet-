@@ -1,7 +1,15 @@
 import dotenv from 'dotenv';
 import path from 'path';
 // Load environment variables from unified root .env file
-dotenv.config({ path: path.resolve(__dirname, '../../../.env') });
+const envPath = path.resolve(__dirname, '../../../.env');
+console.log('Loading .env from:', envPath);
+const result = dotenv.config({ path: envPath });
+if (result.error) {
+  console.error('Error loading .env:', result.error);
+} else {
+  console.log('Successfully loaded .env file');
+  console.log('DATABASE_URL is set:', !!process.env.DATABASE_URL);
+}
 
 // Initialize monitoring before importing anything else
 // import { initializeMonitoring } from '@/config/monitoring.simple';
@@ -11,7 +19,7 @@ import app from './app';
 import { connectDatabase } from '@/config/database';
 import { logger } from '@/utils/logger.simple';
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3001;
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
 async function startServer() {
