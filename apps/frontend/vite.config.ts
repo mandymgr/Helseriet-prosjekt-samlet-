@@ -6,46 +6,92 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   build: {
-    chunkSizeWarningLimit: 1000,
+    chunkSizeWarningLimit: 600, // Redusert grense for bedre optimalisering
     rollupOptions: {
       output: {
         manualChunks: (id) => {
-          // React ecosystem
-          if (id.includes('react') || id.includes('react-dom')) {
-            return 'react-vendor';
+          // Core React - separat chunk
+          if (id.includes('react') && !id.includes('react-router') && !id.includes('react-icons')) {
+            return 'react-core';
           }
-          // Router
+          // React DOM - separat chunk
+          if (id.includes('react-dom')) {
+            return 'react-dom';
+          }
+          // Router - egen chunk
           if (id.includes('react-router')) {
-            return 'router-vendor';
+            return 'router';
           }
           // Payment processing
-          if (id.includes('@stripe')) {
-            return 'stripe-vendor';
+          if (id.includes('@stripe') || id.includes('stripe')) {
+            return 'payment-stripe';
           }
-          // Rich text editor - only loaded when admin pages are accessed
+          // Rich text editor - lazy loaded
           if (id.includes('@uiw/react-md-editor') || id.includes('react-md-editor')) {
-            return 'editor-vendor';
+            return 'editor';
           }
-          // Icons
+          // Icons - egen chunk siden de er store
           if (id.includes('react-icons')) {
-            return 'icons-vendor';
+            return 'icons';
           }
-          // Admin-specific dependencies
-          if (id.includes('/pages/admin/') || id.includes('admin-')) {
-            return 'admin-chunk';
+          // UI komponenter og styling
+          if (id.includes('@radix-ui') || id.includes('@headlessui') || id.includes('framer-motion')) {
+            return 'ui-components';
+          }
+          // Admin pages - lazy loaded
+          if (id.includes('/pages/admin/')) {
+            return 'admin';
+          }
+          // Shop pages - gruppe for e-commerce sider
+          if (id.includes('/pages/shop/') || id.includes('/pages/cart/')) {
+            return 'shop';
+          }
+          // Auth pages - lazy loaded
+          if (id.includes('/pages/auth/')) {
+            return 'auth';
           }
           // Utility libraries
-          if (id.includes('lodash') || id.includes('date-fns') || id.includes('axios')) {
-            return 'utils-vendor';
+          if (id.includes('lodash') || id.includes('date-fns')) {
+            return 'utils';
           }
-          // Everything else stays in main bundle
+          // HTTP libraries
+          if (id.includes('axios') || id.includes('ky')) {
+            return 'http';
+          }
+          // Form libraries
+          if (id.includes('react-hook-form') || id.includes('yup') || id.includes('zod')) {
+            return 'forms';
+          }
+          // State management
+          if (id.includes('zustand') || id.includes('redux')) {
+            return 'state';
+          }
+          // Alle node_modules som ikke er fanget opp
+          if (id.includes('node_modules')) {
+            const module = id.split('node_modules/')[1].split('/')[0];
+            // Grupper små moduler sammen
+            if (module.length < 15) {
+              return 'vendor-misc';
+            }
+          }
         }
       }
     },
-    // Improve build performance
-    target: 'esnext',
-    minify: 'esbuild', // Switch to esbuild for better compatibility
-    sourcemap: false
+    // Forbedret build performance
+    target: 'es2020', // Moderne nok for de fleste browsere
+    minify: 'terser', // Bedre minifisering
+    terserOptions: {
+      compress: {
+        drop_console: true, // Fjern console.log i produksjon
+        drop_debugger: true,
+        pure_funcs: ['console.log', 'console.info', 'console.debug']
+      }
+    },
+    sourcemap: false,
+    // Preload viktige chunks
+    modulePreload: {
+      polyfill: true
+    }
   },
   // Improve dev server performance
   server: {

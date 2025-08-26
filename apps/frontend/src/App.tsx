@@ -3,6 +3,7 @@ import { lazy, Suspense } from 'react';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import AdminLoading from './components/AdminLoading';
+import PageLoading from './components/PageLoading';
 
 // Content Pages
 import Home from './pages/content/Home';
@@ -16,45 +17,46 @@ import AIChat from './pages/content/AIChat';
 import Avbestilling from './pages/content/Avbestilling';
 import Ekspertrad from './pages/content/Ekspertrad';
 
-// Shop Pages
-import Products from './pages/shop/Products';
-import Kosttilskudd from './pages/shop/Kosttilskudd';
-import YogaWellness from './pages/shop/YogaWellness';
-import Categories from './pages/shop/Categories';
-import Product from './pages/shop/Product';
-import Search from './pages/shop/Search';
+// Shop Pages - Lazy load for better performance
+const Products = lazy(() => import('./pages/shop/Products'));
+const Kosttilskudd = lazy(() => import('./pages/shop/Kosttilskudd'));
+const YogaWellness = lazy(() => import('./pages/shop/YogaWellness'));
+const Categories = lazy(() => import('./pages/shop/Categories'));
+const Product = lazy(() => import('./pages/shop/Product'));
+const Search = lazy(() => import('./pages/shop/Search'));
 
-// Bundle Pages
-import Bundles from './pages/shop/bundles/Bundles';
-import BundleImmunforsvar from './pages/shop/bundles/BundleImmunforsvar';
-import BundlePremiumHelse from './pages/shop/bundles/BundlePremiumHelse';
-import BundleStarterPakke from './pages/shop/bundles/BundleStarterPakke';
+// Bundle Pages - Lazy load
+const Bundles = lazy(() => import('./pages/shop/bundles/Bundles'));
+const BundleImmunforsvar = lazy(() => import('./pages/shop/bundles/BundleImmunforsvar'));
+const BundlePremiumHelse = lazy(() => import('./pages/shop/bundles/BundlePremiumHelse'));
+const BundleStarterPakke = lazy(() => import('./pages/shop/bundles/BundleStarterPakke'));
 
-// Cart & Checkout
-import Handlekurv from './pages/cart/Handlekurv';
-import Kasse from './pages/cart/Kasse';
-import Betaling from './pages/cart/Betaling';
-import Ordrebekreftelse from './pages/cart/Ordrebekreftelse';
-// Auth Pages
-import LoggInn from './pages/auth/LoggInn';
-import Registrer from './pages/auth/Registrer';
-import Account from './pages/auth/Account';
-import AccountOrders from './pages/auth/AccountOrders';
-import AccountFavorites from './pages/auth/AccountFavorites';
-import AccountSubscriptions from './pages/auth/AccountSubscriptions';
-import AccountAddresses from './pages/auth/AccountAddresses';
-import ForgotPassword from './pages/auth/ForgotPassword';
+// Cart & Checkout - Lazy load
+const Handlekurv = lazy(() => import('./pages/cart/Handlekurv'));
+const Kasse = lazy(() => import('./pages/cart/Kasse'));
+const Betaling = lazy(() => import('./pages/cart/Betaling'));
+const Ordrebekreftelse = lazy(() => import('./pages/cart/Ordrebekreftelse'));
 
-// Legal Pages
-import Vilkar from './pages/legal/Vilkar';
-import Cookies from './pages/legal/Cookies';
-import Personvern from './pages/legal/Personvern';
-import Retur from './pages/legal/Retur';
-import Frakt from './pages/legal/Frakt';
-import FAQ from './pages/legal/FAQ';
+// Auth Pages - Lazy load
+const LoggInn = lazy(() => import('./pages/auth/LoggInn'));
+const Registrer = lazy(() => import('./pages/auth/Registrer'));
+const Account = lazy(() => import('./pages/auth/Account'));
+const AccountOrders = lazy(() => import('./pages/auth/AccountOrders'));
+const AccountFavorites = lazy(() => import('./pages/auth/AccountFavorites'));
+const AccountSubscriptions = lazy(() => import('./pages/auth/AccountSubscriptions'));
+const AccountAddresses = lazy(() => import('./pages/auth/AccountAddresses'));
+const ForgotPassword = lazy(() => import('./pages/auth/ForgotPassword'));
 
-// Marketing
-import Kampanjer from './pages/marketing/Kampanjer';
+// Legal Pages - Lazy load
+const Vilkar = lazy(() => import('./pages/legal/Vilkar'));
+const Cookies = lazy(() => import('./pages/legal/Cookies'));
+const Personvern = lazy(() => import('./pages/legal/Personvern'));
+const Retur = lazy(() => import('./pages/legal/Retur'));
+const Frakt = lazy(() => import('./pages/legal/Frakt'));
+const FAQ = lazy(() => import('./pages/legal/FAQ'));
+
+// Marketing - Lazy load
+const Kampanjer = lazy(() => import('./pages/marketing/Kampanjer'));
 
 // Admin Pages - Lazy Loaded for Performance
 const AdminLogin = lazy(() => import('./pages/admin/AdminLogin'));
@@ -73,13 +75,13 @@ const AdminInnstillinger = lazy(() => import('./pages/admin/settings/AdminInnsti
 const AdminForsideinnstillinger = lazy(() => import('./pages/admin/settings/AdminForsideinnstillinger'));
 const AdminSikkerhet = lazy(() => import('./pages/admin/settings/AdminSikkerhet'));
 
-// Dev Tools
-import Utviklersystem from './pages/dev/Utviklersystem';
-import ProsjektStatus from './pages/dev/ProsjektStatus';
-import DevIndex from './pages/dev/DevIndex';
-import SiteMap from './pages/dev/SiteMap';
-import StripeTest from './pages/dev/StripeTest';
-import CartTest from './components/CartTest';
+// Dev Tools - Lazy load (not needed in production)
+const Utviklersystem = lazy(() => import('./pages/dev/Utviklersystem'));
+const ProsjektStatus = lazy(() => import('./pages/dev/ProsjektStatus'));
+const DevIndex = lazy(() => import('./pages/dev/DevIndex'));
+const SiteMap = lazy(() => import('./pages/dev/SiteMap'));
+const StripeTest = lazy(() => import('./pages/dev/StripeTest'));
+const CartTest = lazy(() => import('./components/CartTest'));
 
 // Components
 import ProtectedRoute from './components/auth/ProtectedRoute';
@@ -105,45 +107,45 @@ function App() {
             <Route path="/ekspertrad" element={<Ekspertrad />} />
             
             {/* Shop Pages */}
-            <Route path="/produkter" element={<Products />} />
-            <Route path="/kosttilskudd" element={<Kosttilskudd />} />
-            <Route path="/yoga-wellness" element={<YogaWellness />} />
-            <Route path="/kategorier" element={<Categories />} />
-            <Route path="/produkt/:id" element={<Product />} />
-            <Route path="/search" element={<Search />} />
+            <Route path="/produkter" element={<Suspense fallback={<PageLoading />}><Products /></Suspense>} />
+            <Route path="/kosttilskudd" element={<Suspense fallback={<PageLoading />}><Kosttilskudd /></Suspense>} />
+            <Route path="/yoga-wellness" element={<Suspense fallback={<PageLoading />}><YogaWellness /></Suspense>} />
+            <Route path="/kategorier" element={<Suspense fallback={<PageLoading />}><Categories /></Suspense>} />
+            <Route path="/produkt/:id" element={<Suspense fallback={<PageLoading />}><Product /></Suspense>} />
+            <Route path="/search" element={<Suspense fallback={<PageLoading />}><Search /></Suspense>} />
             
             {/* Bundle Pages */}
-            <Route path="/bundles" element={<Bundles />} />
-            <Route path="/bundle/immunforsvar" element={<BundleImmunforsvar />} />
-            <Route path="/bundle/premium-helse" element={<BundlePremiumHelse />} />
-            <Route path="/bundle/starter-pakke" element={<BundleStarterPakke />} />
+            <Route path="/bundles" element={<Suspense fallback={<PageLoading />}><Bundles /></Suspense>} />
+            <Route path="/bundle/immunforsvar" element={<Suspense fallback={<PageLoading />}><BundleImmunforsvar /></Suspense>} />
+            <Route path="/bundle/premium-helse" element={<Suspense fallback={<PageLoading />}><BundlePremiumHelse /></Suspense>} />
+            <Route path="/bundle/starter-pakke" element={<Suspense fallback={<PageLoading />}><BundleStarterPakke /></Suspense>} />
             
             {/* Cart & Checkout Flow */}
-            <Route path="/handlekurv" element={<Handlekurv />} />
-            <Route path="/kasse" element={<Kasse />} />
-            <Route path="/betaling" element={<Betaling />} />
-            <Route path="/ordrebekreftelse" element={<Ordrebekreftelse />} />
+            <Route path="/handlekurv" element={<Suspense fallback={<PageLoading />}><Handlekurv /></Suspense>} />
+            <Route path="/kasse" element={<Suspense fallback={<PageLoading />}><Kasse /></Suspense>} />
+            <Route path="/betaling" element={<Suspense fallback={<PageLoading />}><Betaling /></Suspense>} />
+            <Route path="/ordrebekreftelse" element={<Suspense fallback={<PageLoading />}><Ordrebekreftelse /></Suspense>} />
             
             {/* Auth Pages */}
-            <Route path="/logg-inn" element={<LoggInn />} />
-            <Route path="/registrer" element={<Registrer />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="/account" element={<ProtectedRoute requireAuth={true}><Account /></ProtectedRoute>} />
-            <Route path="/account/orders" element={<ProtectedRoute requireAuth={true}><AccountOrders /></ProtectedRoute>} />
-            <Route path="/account/favorites" element={<ProtectedRoute requireAuth={true}><AccountFavorites /></ProtectedRoute>} />
-            <Route path="/account/subscriptions" element={<ProtectedRoute requireAuth={true}><AccountSubscriptions /></ProtectedRoute>} />
-            <Route path="/account/addresses" element={<ProtectedRoute requireAuth={true}><AccountAddresses /></ProtectedRoute>} />
+            <Route path="/logg-inn" element={<Suspense fallback={<PageLoading />}><LoggInn /></Suspense>} />
+            <Route path="/registrer" element={<Suspense fallback={<PageLoading />}><Registrer /></Suspense>} />
+            <Route path="/forgot-password" element={<Suspense fallback={<PageLoading />}><ForgotPassword /></Suspense>} />
+            <Route path="/account" element={<ProtectedRoute requireAuth={true}><Suspense fallback={<PageLoading />}><Account /></Suspense></ProtectedRoute>} />
+            <Route path="/account/orders" element={<ProtectedRoute requireAuth={true}><Suspense fallback={<PageLoading />}><AccountOrders /></Suspense></ProtectedRoute>} />
+            <Route path="/account/favorites" element={<ProtectedRoute requireAuth={true}><Suspense fallback={<PageLoading />}><AccountFavorites /></Suspense></ProtectedRoute>} />
+            <Route path="/account/subscriptions" element={<ProtectedRoute requireAuth={true}><Suspense fallback={<PageLoading />}><AccountSubscriptions /></Suspense></ProtectedRoute>} />
+            <Route path="/account/addresses" element={<ProtectedRoute requireAuth={true}><Suspense fallback={<PageLoading />}><AccountAddresses /></Suspense></ProtectedRoute>} />
             
             {/* Legal Pages */}
-            <Route path="/vilkar" element={<Vilkar />} />
-            <Route path="/cookies" element={<Cookies />} />
-            <Route path="/personvern" element={<Personvern />} />
-            <Route path="/retur" element={<Retur />} />
-            <Route path="/frakt" element={<Frakt />} />
-            <Route path="/faq" element={<FAQ />} />
+            <Route path="/vilkar" element={<Suspense fallback={<PageLoading />}><Vilkar /></Suspense>} />
+            <Route path="/cookies" element={<Suspense fallback={<PageLoading />}><Cookies /></Suspense>} />
+            <Route path="/personvern" element={<Suspense fallback={<PageLoading />}><Personvern /></Suspense>} />
+            <Route path="/retur" element={<Suspense fallback={<PageLoading />}><Retur /></Suspense>} />
+            <Route path="/frakt" element={<Suspense fallback={<PageLoading />}><Frakt /></Suspense>} />
+            <Route path="/faq" element={<Suspense fallback={<PageLoading />}><FAQ /></Suspense>} />
             
             {/* Marketing */}
-            <Route path="/kampanjer" element={<Kampanjer />} />
+            <Route path="/kampanjer" element={<Suspense fallback={<PageLoading />}><Kampanjer /></Suspense>} />
             
             {/* Admin Routes - Lazy Loaded with Suspense */}
             <Route path="/admin/login" element={
@@ -228,12 +230,12 @@ function App() {
             } />
             
             {/* Dev Tools */}
-            <Route path="/dev-index" element={<DevIndex />} />
-            <Route path="/site-map" element={<SiteMap />} />
-            <Route path="/utviklersystem" element={<Utviklersystem />} />
-            <Route path="/cart-test" element={<CartTest />} />
-            <Route path="/prosjekt-status" element={<ProsjektStatus />} />
-            <Route path="/stripe-test" element={<StripeTest />} />
+            <Route path="/dev-index" element={<Suspense fallback={<PageLoading />}><DevIndex /></Suspense>} />
+            <Route path="/site-map" element={<Suspense fallback={<PageLoading />}><SiteMap /></Suspense>} />
+            <Route path="/utviklersystem" element={<Suspense fallback={<PageLoading />}><Utviklersystem /></Suspense>} />
+            <Route path="/cart-test" element={<Suspense fallback={<PageLoading />}><CartTest /></Suspense>} />
+            <Route path="/prosjekt-status" element={<Suspense fallback={<PageLoading />}><ProsjektStatus /></Suspense>} />
+            <Route path="/stripe-test" element={<Suspense fallback={<PageLoading />}><StripeTest /></Suspense>} />
           </Routes>
         </main>
         <Footer />
