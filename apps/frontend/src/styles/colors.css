@@ -1,0 +1,14 @@
+:root {
+  /* Primary green color from logo */
+  --primary-color: #4a7c59;
+  /* Secondary white/light color */
+  --secondary-color: #ffffff;
+  
+  /* Derived colors for consistency */
+  --primary-hover: #3a6249;
+  --text-primary: #4a7c59;
+  --text-secondary: #ffffff;
+  --background-primary: #ffffff;
+  --background-secondary: #4a7c59;
+  --border-color: #4a7c59;
+}

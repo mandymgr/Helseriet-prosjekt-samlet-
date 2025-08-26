@@ -1,220 +1,165 @@
-# 🌿 Helseriet E-commerce Platform
+# 🌿 Helseriet E-commerce Platform (Monorepo)
 
-> Modern Norwegian health & wellness e-commerce platform built with React, Node.js, and PostgreSQL.
+> **Unified repository** containing both frontend and backend applications for the Helseriet health and wellness e-commerce platform.
 
-[![Frontend](https://img.shields.io/badge/Frontend-React%20%2B%20TypeScript-61DAFB?logo=react)](https://github.com/mandymgr/helseriet-frontend)
-[![Backend](https://img.shields.io/badge/Backend-Node.js%20%2B%20Express-339933?logo=node.js)](https://github.com/mandymgr/helseriet-backend)
-[![Database](https://img.shields.io/badge/Database-PostgreSQL%20%2B%20Prisma-336791?logo=postgresql)](https://railway.app)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/mandymgr/Helseriet-prosjekt-samlet-)
+[![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+[![Node.js](https://img.shields.io/badge/node.js-%3E%3D18.0.0-green)](https://nodejs.org/)
 
-## 🎯 Project Overview
-
-Helseriet is a comprehensive e-commerce platform specializing in health and wellness products, featuring:
-
-- **🛍️ Multi-brand catalog** - SYNERGY supplements, ORGANIXX organic products, SHAKTI yoga accessories
-- **🛒 Advanced shopping** - Smart cart, product filtering, bundle packages
-- **👤 User management** - Authentication, profiles, order history
-- **📱 Responsive design** - Mobile-first with consistent brand design system
-- **⚡ High performance** - Optimized builds, lazy loading, code splitting
-
-## 🏗️ Architecture
+## 🏗️ Monorepo Structure
 
 ```
-helseriet-projekt/
-├── helseriet-frontend/     # React/TypeScript SPA (Vite)
-├── helseriet-backend/      # Node.js/Express API
-├── CLAUDE.md              # Development guidelines & architecture
-├── PROJECT_STATUS.md      # Current project status & progress
-└── scripts/               # Utility scripts & automation
+helseriet-monorepo/
+├── apps/
+│   ├── frontend/          # React/TypeScript frontend (Vite)
+│   └── backend/           # Node.js/Express backend
+├── packages/              # Shared packages (future use)
+├── scripts/               # Utility scripts
+├── docs/                  # Documentation
+├── .github/workflows/     # CI/CD workflows
+└── README.md
 ```
-
-### 🔧 Technology Stack
-
-**Frontend:**
-- **React 18** with TypeScript for type safety
-- **Vite** for fast development and optimized builds  
-- **Tailwind CSS** with custom design system
-- **React Router** for client-side routing
-- **Custom hooks** for business logic separation
-
-**Backend:**
-- **Node.js + Express** for REST API
-- **Prisma ORM** with PostgreSQL database
-- **TypeScript** for full-stack type safety
-- **JWT authentication** with session management
-- **Comprehensive testing** with Jest + Supertest
-
-**Infrastructure:**
-- **Railway** for PostgreSQL hosting
-- **Vercel** for frontend deployment
-- **GitHub Actions** for CI/CD (planned)
 
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js 18+ 
-- npm 9+
-- PostgreSQL database (Railway recommended)
+- Node.js ≥18.0.0
+- npm ≥9.0.0
 
-### 1️⃣ Clone with submodules
+### Installation
 ```bash
-git clone --recursive https://github.com/mandymgr/helseriet-projekt.git
-cd helseriet-projekt
+git clone https://github.com/mandymgr/Helseriet-prosjekt-samlet-.git
+cd Helseriet-prosjekt-samlet-
+npm run install:all
 ```
 
-### 2️⃣ Environment setup
+### Development
 ```bash
-# Backend environment
-cp helseriet-backend/.env.example helseriet-backend/.env
-# Add your DATABASE_URL and other secrets
-
-# Frontend environment  
-cp helseriet-frontend/.env.example helseriet-frontend/.env
-```
-
-### 3️⃣ Install dependencies
-```bash
-# Install root dependencies
-npm install
-
-# Install submodule dependencies
-cd helseriet-backend && npm install
-cd ../helseriet-frontend && npm install
-```
-
-### 4️⃣ Database setup
-```bash
-cd helseriet-backend
-npx prisma generate
-npx prisma db push
-npx prisma db seed    # Optional: seed with sample data
-```
-
-### 5️⃣ Start development
-```bash
-# From root directory - starts both frontend and backend
+# Start both frontend and backend concurrently
 npm run dev
 
-# Or start individually:
-npm run dev:frontend   # http://localhost:5173
-npm run dev:backend    # http://localhost:3001
+# Or start individually
+npm run dev:frontend  # Frontend on http://localhost:5173
+npm run dev:backend   # Backend on http://localhost:3001
 ```
 
-## 📊 Performance Metrics
-
-### Frontend Optimization Results:
-- **68% reduction** in first load time (2.3MB → 730KB)
-- **Code splitting** with intelligent chunking
-- **Lazy loading** for admin and editor components
-- **Build time**: ~55 seconds including documentation
-
-### Backend Performance:
-- **REST API** with standardized error handling
-- **Database optimization** with Prisma query efficiency
-- **Comprehensive testing** coverage
-- **Type-safe** development experience
-
-## 🛠️ Development
-
-### Key Commands
+### Building
 ```bash
-npm run start:clean          # Clean start (kills duplicates)
-npm run cleanup             # Stop all running processes
-npm run dev                 # Start both frontend & backend
-npm run build               # Build all packages
-npm run test                # Run all tests
+# Build both applications
+npm run build
+
+# Or build individually  
+npm run build:frontend
+npm run build:backend
 ```
 
-### 📁 Project Structure
+## 📁 Applications
 
-**Frontend (`/helseriet-frontend/`):**
+### Frontend (`apps/frontend/`)
+- **Framework**: React 19 + TypeScript
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS
+- **Routing**: React Router v7
+- **State**: React Context + Custom Hooks
+- **Deployment**: Vercel
+
+**Key Features:**
+- Responsive design with organic aesthetic
+- Product catalog with advanced filtering
+- Shopping cart and checkout flow
+- Admin dashboard with rich text editor
+- Performance optimized with code splitting
+
+### Backend (`apps/backend/`)
+- **Runtime**: Node.js + Express
+- **Language**: TypeScript
+- **Database**: PostgreSQL + Prisma ORM
+- **Authentication**: Express Session
+- **Payment**: Stripe integration
+- **Testing**: Jest + Supertest
+
+**Key Features:**
+- RESTful API with proper error handling
+- Product management and categories
+- User authentication and authorization
+- Order processing and payment handling
+- Comprehensive test suite
+
+## 🛠️ Available Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start both apps in development mode |
+| `npm run build` | Build both applications for production |
+| `npm run test` | Run tests for both applications |
+| `npm run lint` | Lint all applications |
+| `npm run typecheck` | Type check all TypeScript code |
+| `npm run clean` | Clean all node_modules and build artifacts |
+| `npm run start:clean` | Clean start with process cleanup |
+
+## 🌐 Environment Setup
+
+### Frontend Environment Variables
+Create `apps/frontend/.env`:
+```env
+VITE_API_URL=http://localhost:3001
+VITE_API_BASE_URL=http://localhost:3001/api
+VITE_STRIPE_PUBLISHABLE_KEY=pk_test_...
 ```
-src/
-├── components/            # Reusable UI components
-├── hooks/                # Custom business logic hooks  
-├── context/              # Global state management
-├── pages/                # Route components (organized by feature)
-│   ├── admin/           # Admin panel pages
-│   ├── shop/            # E-commerce pages
-│   ├── auth/            # Authentication
-│   └── dev/             # Developer tools
-├── services/            # API integration
-└── utils/               # Helper functions
+
+### Backend Environment Variables
+Create `apps/backend/.env`:
+```env
+DATABASE_URL="postgresql://..."
+SESSION_SECRET="your-session-secret"
+STRIPE_SECRET_KEY="sk_test_..."
+CLOUDINARY_URL="cloudinary://..."
 ```
 
-**Backend (`/helseriet-backend/`):**
-```
-src/
-├── controllers/          # HTTP request handlers
-├── services/            # Business logic layer
-├── middleware/          # Express middleware
-├── routes/              # API route definitions
-├── models/              # Database models
-└── utils/               # Helper utilities
+## 🚀 Deployment
+
+### Frontend (Vercel)
+```bash
+npm run deploy:frontend
 ```
 
-## 🎨 Design System
+### Backend
+Backend can be deployed to Railway, Heroku, or any Node.js hosting platform.
 
-Helseriet follows a strict design system with:
+## 📖 Documentation
 
-- **Brand Colors**: Sage (#9CAF88) primary, Terracotta (#D4A574) accent
-- **Typography**: Serif headers, Inter body text with responsive sizing
-- **Components**: Consistent spacing, organic borders, minimal shadows
-- **Accessibility**: ARIA compliance, screen reader support
+- [Project Documentation](CLAUDE.md) - Complete project guide
+- [Project Status](PROJECT_STATUS.md) - Current development status
+- [API Documentation](apps/backend/README.md) - Backend API reference
+- [Frontend Guide](apps/frontend/README.md) - Frontend development guide
 
-**📖 Full design documentation**: [`/src/pages/dev/Utviklersystem.tsx`](helseriet-frontend/src/pages/dev/Utviklersystem.tsx)
+## 🏛️ Architecture
 
-## 📈 Current Status
+This monorepo follows a clean architecture with:
 
-### ✅ Completed Features
-- **Core e-commerce functionality** - Product catalog, cart, checkout
-- **User authentication** - Registration, login, session management  
-- **Admin panel** - Product management, order tracking
-- **Performance optimization** - Code splitting, lazy loading
-- **Design system** - Consistent UI/UX across all pages
-- **Database schema** - Complete product, user, order models
-
-### 🚧 In Development
-- **TypeScript cleanup** - Resolving remaining compilation issues
-- **Payment integration** - Stripe/Vipps implementation
-- **Order fulfillment** - Shipping and tracking
-- **Enhanced testing** - E2E test coverage
-
-### 🎯 Roadmap
-- **Mobile app** - React Native version
-- **Analytics dashboard** - Business intelligence
-- **Inventory management** - Stock tracking automation
-- **Multi-language** - Norwegian + English support
+- **Separation of Concerns**: Frontend and backend are independent applications
+- **Shared Configuration**: Common scripts and tooling configuration
+- **Type Safety**: Full TypeScript coverage across the stack
+- **Modern Tooling**: Vite, Prisma, Jest, ESLint, and more
 
 ## 🤝 Contributing
 
-1. **Read the guidelines**: Check [`CLAUDE.md`](CLAUDE.md) for development principles
-2. **Check status**: Review [`PROJECT_STATUS.md`](PROJECT_STATUS.md) for current priorities  
-3. **Follow conventions**: Use established patterns and design system
-4. **Test thoroughly**: Ensure all features work correctly
-5. **Update docs**: Keep documentation current
-
-### Development Principles
-- **"ALLTID BEST LØSNING PRINSIPPET"** - Always aim for the best, complete solution
-- **Never skip problems** - Fix issues properly, no temporary workarounds
-- **Maintain quality** - Code should be better than industry standards
-- **Document decisions** - Keep CLAUDE.md and PROJECT_STATUS.md updated
+1. Clone the repository
+2. Install dependencies: `npm run install:all`
+3. Start development: `npm run dev`
+4. Make your changes
+5. Run tests: `npm run test`
+6. Submit a pull request
 
 ## 📄 License
 
-This project is proprietary and confidential. All rights reserved.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🔗 Related Repositories
 
-- **Frontend**: [helseriet-frontend](https://github.com/mandymgr/helseriet-frontend)
-- **Backend**: [helseriet-backend](https://github.com/mandymgr/helseriet-backend)
-
-## 📞 Support
-
-For development questions or issues, please refer to:
-- [`CLAUDE.md`](CLAUDE.md) - Complete development guide
-- [`PROJECT_STATUS.md`](PROJECT_STATUS.md) - Current project status
-- [Issues](https://github.com/mandymgr/helseriet-projekt/issues) - Bug reports and feature requests
+- [helseriet-frontend](https://github.com/mandymgr/helseriet-frontend) - Standalone frontend repo
+- [helseriet-backend](https://github.com/mandymgr/helseriet-backend) - Standalone backend repo
 
 ---
 
-**Built with ❤️ for Norwegian health & wellness**
+**Made with ❤️ for natural health and wellness**

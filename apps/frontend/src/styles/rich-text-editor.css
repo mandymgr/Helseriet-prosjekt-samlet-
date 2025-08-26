@@ -1,0 +1,160 @@
+/* Rich Text Editor Styling for Admin */
+.rich-text-editor {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Override default MDEditor styling to match admin design */
+.rich-text-editor .w-md-editor {
+  background-color: #ffffff;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+}
+
+.rich-text-editor .w-md-editor:focus-within {
+  border-color: #374151;
+}
+
+.rich-text-editor .w-md-editor-toolbar {
+  background-color: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 8px 12px;
+}
+
+.rich-text-editor .w-md-editor-toolbar button {
+  color: #4b5563;
+  border-radius: 4px;
+  padding: 6px 8px;
+  margin: 0 2px;
+}
+
+.rich-text-editor .w-md-editor-toolbar button:hover {
+  background-color: #e5e7eb;
+  color: #111827;
+}
+
+.rich-text-editor .w-md-editor-toolbar button.active {
+  background-color: #374151;
+  color: #ffffff;
+}
+
+.rich-text-editor .w-md-editor-text-container {
+  background-color: #ffffff;
+}
+
+.rich-text-editor .w-md-editor-text {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  padding: 16px;
+  color: #111827;
+  background-color: #ffffff;
+}
+
+.rich-text-editor .w-md-editor-text:focus {
+  outline: none;
+}
+
+/* Preview styling */
+.rich-text-editor .wmde-markdown {
+  background-color: #ffffff;
+  padding: 16px;
+  font-family: ui-serif, Georgia, Cambria, serif;
+  line-height: 1.7;
+  color: #111827;
+}
+
+.rich-text-editor .wmde-markdown h1,
+.rich-text-editor .wmde-markdown h2,
+.rich-text-editor .wmde-markdown h3,
+.rich-text-editor .wmde-markdown h4,
+.rich-text-editor .wmde-markdown h5,
+.rich-text-editor .wmde-markdown h6 {
+  color: #111827;
+  font-weight: 600;
+  margin-top: 24px;
+  margin-bottom: 16px;
+}
+
+.rich-text-editor .wmde-markdown h1 {
+  font-size: 2rem;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 8px;
+}
+
+.rich-text-editor .wmde-markdown h2 {
+  font-size: 1.5rem;
+  color: #9CAF88; /* Helseriet sage color */
+}
+
+.rich-text-editor .wmde-markdown h3 {
+  font-size: 1.25rem;
+}
+
+.rich-text-editor .wmde-markdown p {
+  margin-bottom: 16px;
+}
+
+.rich-text-editor .wmde-markdown ul,
+.rich-text-editor .wmde-markdown ol {
+  margin-bottom: 16px;
+  padding-left: 20px;
+}
+
+.rich-text-editor .wmde-markdown li {
+  margin-bottom: 4px;
+}
+
+.rich-text-editor .wmde-markdown blockquote {
+  border-left: 4px solid #9CAF88;
+  padding-left: 16px;
+  margin: 16px 0;
+  font-style: italic;
+  color: #6b7280;
+}
+
+.rich-text-editor .wmde-markdown code {
+  background-color: #f3f4f6;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.875em;
+}
+
+.rich-text-editor .wmde-markdown pre {
+  background-color: #f3f4f6;
+  padding: 16px;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 16px 0;
+}
+
+.rich-text-editor .wmde-markdown pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+.rich-text-editor .wmde-markdown a {
+  color: #9CAF88;
+  text-decoration: underline;
+}
+
+.rich-text-editor .wmde-markdown a:hover {
+  color: #8BA373;
+}
+
+.rich-text-editor .wmde-markdown strong {
+  font-weight: 600;
+  color: #111827;
+}
+
+.rich-text-editor .wmde-markdown em {
+  font-style: italic;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .rich-text-editor .w-md-editor-text {
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+}

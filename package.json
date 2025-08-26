@@ -1,32 +1,59 @@
 {
-  "name": "helseriet-projekt",
+  "name": "helseriet-monorepo",
   "version": "1.0.0",
-  "description": "Norwegian e-commerce platform for health and wellness products",
+  "description": "Helseriet E-commerce Platform - Unified Monorepo with React Frontend and Node.js Backend",
   "type": "module",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
     "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
-    "dev:frontend": "cd helseriet-frontend && npm run dev",
-    "dev:backend": "cd helseriet-backend && npm run dev",
+    "dev:frontend": "cd apps/frontend && npm run dev",
+    "dev:backend": "cd apps/backend && npm run dev",
     "start:clean": "npm run cleanup && npm run dev",
     "cleanup": "./scripts/cleanup.sh",
     "check:processes": "ps aux | grep -E '(node|vite|tsx)' | grep -v grep",
     "build": "npm run build:frontend && npm run build:backend",
-    "build:frontend": "cd helseriet-frontend && npm run build",
-    "build:backend": "cd helseriet-backend && npm run build",
-    "test": "cd helseriet-backend && npm test",
-    "lint": "cd helseriet-frontend && npm run lint && cd ../helseriet-backend && npm run lint",
-    "typecheck": "cd helseriet-backend && npm run typecheck"
+    "build:frontend": "cd apps/frontend && npm run build",
+    "build:backend": "cd apps/backend && npm run build",
+    "test": "npm run test:frontend && npm run test:backend",
+    "test:frontend": "cd apps/frontend && npm run test --if-present",
+    "test:backend": "cd apps/backend && npm test",
+    "lint": "npm run lint:frontend && npm run lint:backend",
+    "lint:frontend": "cd apps/frontend && npm run lint",
+    "lint:backend": "cd apps/backend && npm run lint",
+    "typecheck": "npm run typecheck:frontend && npm run typecheck:backend",
+    "typecheck:frontend": "cd apps/frontend && npx tsc --noEmit",
+    "typecheck:backend": "cd apps/backend && npm run lint",
+    "install:all": "npm install && cd apps/frontend && npm install && cd ../backend && npm install",
+    "clean": "rm -rf node_modules apps/*/node_modules apps/*/dist",
+    "deploy:frontend": "cd apps/frontend && vercel --prod",
+    "deploy:backend": "cd apps/backend && echo 'Backend deployment not configured yet'"
   },
   "devDependencies": {
-    "concurrently": "^8.2.0"
+    "concurrently": "^8.2.0",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
   },
   "repository": {
     "type": "git",
-    "url": "private"
+    "url": "https://github.com/mandymgr/Helseriet-prosjekt-samlet-.git"
   },
-  "license": "MIT",
-  "private": true
+  "keywords": [
+    "ecommerce",
+    "health",
+    "wellness",
+    "react",
+    "nodejs",
+    "typescript",
+    "monorepo"
+  ],
+  "author": "Mandy Margjervikrygg",
+  "license": "MIT"
 }

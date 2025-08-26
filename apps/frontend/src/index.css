@@ -1,0 +1,1009 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@200;300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+/* Helseriet Brand Colors */
+@theme {
+  /* Primary Brand Colors - EXACT from original */
+  --color-sage-50: #f4f6f2;
+  --color-sage-100: #e8eee3;
+  --color-sage-200: #d1ddc7;
+  --color-sage-300: #B8C9A6;   /* sage_light from original */
+  --color-sage-400: #9caf88;
+  --color-sage-500: #9CAF88;   /* Primary sage - EXACT from original */
+  --color-sage-600: #7A8F6B;   /* sage_dark - EXACT from original */
+  --color-sage-700: #617051;
+  --color-sage-800: #4f5b42;
+  --color-sage-900: #424c37;
+
+  /* Secondary Colors - EXACT from original */
+  --color-charcoal: #2C2A26;     /* Text/contrast - EXACT */
+  --color-terracotta: #D4A574;   /* Accent/warmth - EXACT */
+  
+  /* Background/Stone colors - EXACT from original */
+  --color-stone-light: #F5F1E8;  /* stone_light - EXACT */
+  --color-stone: #E8E2D5;        /* stone - EXACT */
+  --color-stone-dark: #D4C8B8;   /* stone_dark - EXACT */
+  
+  /* Additional color classes - EXACT from original */
+  --color-stone_light: #F5F1E8;  /* Custom utility */
+  --color-warm_white: #FDFCF7;   /* warm_white - EXACT */
+  
+  /* Terracotta color */
+  --color-terracotta-50: #fef3e2;
+  --color-terracotta-100: #fde4b8;
+  --color-terracotta-200: #fbd08b;
+  --color-terracotta-300: #f9bc5e;
+  --color-terracotta-400: #f7a832;
+  --color-terracotta-500: #d4a574;
+  --color-terracotta-600: #b8935f;
+  --color-terracotta-700: #9c814a;
+  --color-terracotta-800: #806f35;
+  --color-terracotta-900: #645d20;
+  
+  /* Background Colors */
+  --color-cream: #fbf9f4;        /* Main background */
+  --color-stone: #e8e2d5;        /* Neutral background */
+  --color-stone-light: #f5f1e8;  /* Light background */
+  
+  /* Semantic colors based on brand palette */
+  --color-neutral-50: #fbf9f4;   /* cream - main background */
+  --color-neutral-100: #f5f1e8;  /* stone-light */
+  --color-neutral-200: #e8e2d5;  /* stone */
+  --color-neutral-300: #d6cfc0;
+  --color-neutral-400: #c4bcab;
+  --color-neutral-500: #a3988b;
+  --color-neutral-600: #8a7f72;
+  --color-neutral-700: #6e645a;
+  --color-neutral-800: #524a42;
+  --color-neutral-900: #2c2a26;  /* charcoal */
+  
+  /* HELSERIET SPACING SYSTEM - Mathematical Scale */
+  /* Base unit: 8px for perfect pixel alignment */
+  --space-1: 0.25rem;   /* 4px  - Micro spacing */
+  --space-2: 0.5rem;    /* 8px  - Tight spacing */
+  --space-3: 0.75rem;   /* 12px - Small spacing */
+  --space-4: 1rem;      /* 16px - Base spacing */
+  --space-5: 1.25rem;   /* 20px - Medium spacing */
+  --space-6: 1.5rem;    /* 24px - Comfortable spacing */
+  --space-8: 2rem;      /* 32px - Large spacing */
+  --space-10: 2.5rem;   /* 40px - XL spacing */
+  --space-12: 3rem;     /* 48px - XXL spacing */
+  --space-16: 4rem;     /* 64px - Section spacing */
+  --space-20: 5rem;     /* 80px - Large section spacing */
+  --space-24: 6rem;     /* 96px - XL section spacing */
+  --space-32: 8rem;     /* 128px - Hero spacing */
+  --space-40: 10rem;    /* 160px - Epic spacing */
+  
+  /* Component-specific spacing tokens */
+  --spacing-card-inner: var(--space-6);      /* 24px - Inside cards */
+  --spacing-card-gap: var(--space-8);        /* 32px - Between cards */
+  --spacing-section: var(--space-20);        /* 80px - Between sections */
+  --spacing-section-lg: var(--space-32);     /* 128px - Large section breaks */
+  --spacing-content: var(--space-16);        /* 64px - Content to content */
+}
+
+/* ULTRA-PREMIUM TYPOGRAPHY SYSTEM */
+* {
+  font-family: -apple-system, 'SF Pro Display', 'Inter', 'Helvetica Neue', system-ui, sans-serif;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "pnum" 1, "tnum" 0, "onum" 1, "lnum" 0, "dlig" 0;
+}
+
+/* Set global background color with premium gradient */
+body {
+  background: linear-gradient(135deg, #FDFCF7 0%, #F8F6F0 50%, #FDFCF7 100%);
+  line-height: 1.6;
+  letter-spacing: -0.02em;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  padding-top: 7rem; /* 112px for fixed header */
+}
+
+/* Custom Typography Classes */
+.text-hero {
+  font-size: clamp(2.5rem, 8vw, 6rem);  /* 40px → 96px responsive */
+  font-weight: 200;                      /* Ultra-light */
+  line-height: 0.9;                      /* Tight spacing */
+  letter-spacing: -0.04em;               /* Very tight tracking */
+  font-family: -apple-system, 'SF Pro Display', 'Inter', 'Helvetica Neue', system-ui, sans-serif;
+}
+
+.text-hero-georgia {
+  font-size: 3.75rem;                       /* Fixed 60px */
+  font-weight: 100;                          /* Thin weight for Georgia */
+  line-height: 1;                            /* Tight line height */
+  letter-spacing: -0.04em;                   /* Very tight tracking */
+  font-family: 'Georgia', serif;             /* Georgia Light */
+}
+
+.text-hero-inter {
+  font-size: 3.75rem;                       /* Fixed 60px */
+  font-weight: 200;                          /* Ultra light weight for Inter */
+  line-height: 1;                            /* Tight line height */
+  letter-spacing: -0.04em;                   /* Very tight tracking */
+  font-family: 'Inter', -apple-system, 'SF Pro Display', 'Helvetica Neue', system-ui, sans-serif;
+}
+
+.text-display {
+  font-weight: 300;          /* Light weight */
+  letter-spacing: -0.03em;   /* Tight tracking */
+  line-height: 1.2;          /* Compact leading */
+  font-family: -apple-system, 'SF Pro Display', 'Inter', 'Helvetica Neue', system-ui, sans-serif;
+}
+
+.text-body-premium {
+  font-weight: 300;          /* Light weight */
+  line-height: 1.7;          /* Relaxed reading */
+  letter-spacing: -0.01em;   /* Slight tightening */
+  font-family: -apple-system, 'SF Pro Display', 'Inter', 'Helvetica Neue', system-ui, sans-serif;
+}
+
+/* PREMIUM STYLING CLASSES */
+
+/* Liquid Glass Effects */
+.liquid-glass {
+  backdrop-filter: blur(40px) saturate(200%);
+  background: rgba(253, 252, 247, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+}
+
+.liquid-glass-dark {
+  backdrop-filter: blur(40px) saturate(200%);
+  background: rgba(44, 42, 38, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Animations */
+@keyframes liquid-glass {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-2px); }
+}
+
+@keyframes float-premium {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-4px) rotate(1deg); }
+  66% { transform: translateY(2px) rotate(-1deg); }
+}
+
+@keyframes breath {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Animation Classes */
+.animate-liquid-glass {
+  animation: liquid-glass 8s ease-in-out infinite;
+}
+
+.animate-float-premium {
+  animation: float-premium 6s ease-in-out infinite;
+}
+
+.breath-animation {
+  animation: breath 6s ease-in-out infinite;
+}
+
+.slow-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: reveal 1s ease-out forwards;
+}
+
+/* Premium Hover Effects */
+.cinema-hover {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform-style: preserve-3d;
+}
+
+.cinema-hover:hover {
+  transform: translateY(-8px) rotateX(5deg) rotateY(2deg);
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.15),
+    0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.hover-float {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hover-float:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 40px rgba(44, 42, 38, 0.12);
+}
+
+/* Text Color Utilities - matching original exactly */
+.text-sage_dark {
+  color: #7A8F6B; /* sage_dark from original */
+}
+
+.text-sage {
+  color: #9CAF88; /* sage from original */
+}
+
+.text-warm_white {
+  color: #FDFCF7; /* warm_white from original */
+}
+
+.text-warm_white\/70 {
+  color: rgba(253, 252, 247, 0.7);
+}
+
+.text-warm_white\/50 {
+  color: rgba(253, 252, 247, 0.5);
+}
+
+/* Background utilities for warm white */
+.bg-warm_white\/10 {
+  background-color: rgba(253, 252, 247, 0.1);
+}
+
+.border-warm_white\/20 {
+  border-color: rgba(253, 252, 247, 0.2);
+}
+
+.placeholder-warm_white\/50::placeholder {
+  color: rgba(253, 252, 247, 0.5);
+}
+
+/* Utility Classes */
+.organic-border {
+  border-radius: 32px 8px 32px 8px;
+}
+
+/* Background utility classes - matching original exactly */
+.bg-stone_light\/30 {
+  background-color: rgba(245, 241, 232, 0.3);
+}
+
+.bg-stone_light\/50 {
+  background-color: rgba(245, 241, 232, 0.5);
+}
+
+.bg-stone_light\/20 {
+  background-color: rgba(245, 241, 232, 0.2);
+}
+
+.bg-sage_light\/5 {
+  background-color: rgba(184, 201, 166, 0.05);
+}
+
+.bg-sage_light\/10 {
+  background-color: rgba(184, 201, 166, 0.1);
+}
+
+.bg-sage\/10 {
+  background-color: rgba(156, 175, 136, 0.1);
+}
+
+.bg-sage\/20 {
+  background-color: rgba(156, 175, 136, 0.2);
+}
+
+.minimal-shadow {
+  box-shadow: 0 2px 20px rgba(44, 42, 38, 0.08);
+}
+
+.asymmetric-grid {
+  display: grid;
+  grid-template-columns: 1.618fr 1fr;
+  gap: 4rem;
+}
+
+@media (max-width: 768px) {
+  .asymmetric-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+/* HELSERIET SPACING UTILITY CLASSES */
+
+/* Section spacing - for main content blocks */
+.section-spacing {
+  padding-top: var(--spacing-section);     /* 80px */
+  padding-bottom: var(--spacing-section);  /* 80px */
+}
+
+.section-spacing-lg {
+  padding-top: var(--spacing-section-lg);    /* 128px */
+  padding-bottom: var(--spacing-section-lg); /* 128px */
+}
+
+/* Hero spacing - for hero sections */
+.hero-spacing {
+  padding-top: var(--space-32);    /* 128px */
+  padding-bottom: var(--space-24); /* 96px */
+}
+
+/* Page header spacing - for page titles, consistent across all pages */
+.page-header {
+  padding-bottom: var(--space-16); /* 64px - Standard distance from header to content */
+}
+
+/* Content spacing - between content blocks */
+.content-spacing {
+  margin-bottom: var(--spacing-content); /* 64px */
+}
+
+/* Card spacing - for card layouts */
+.card-inner {
+  padding: var(--spacing-card-inner); /* 24px */
+}
+
+.card-gap {
+  gap: var(--spacing-card-gap); /* 32px */
+}
+
+/* Premium breathing room utilities */
+.breathe-sm { margin-bottom: var(--space-8); }   /* 32px */
+.breathe-md { margin-bottom: var(--space-12); }  /* 48px */
+.breathe-lg { margin-bottom: var(--space-16); }  /* 64px */
+.breathe-xl { margin-bottom: var(--space-20); }  /* 80px */
+
+/* Legacy zen-spacing for backwards compatibility */
+.zen-spacing {
+  padding-top: var(--spacing-section-lg);
+  padding-bottom: var(--spacing-section-lg);
+}
+
+.nature-texture {
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(156, 175, 136, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(212, 165, 116, 0.03) 0%, transparent 50%);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Button Styles - Exact match to original */
+.btn-organic {
+  background: linear-gradient(135deg, #9CAF88 0%, #7A8F6B 100%);
+  color: white;
+  padding: 14px 28px;
+  border-radius: 50px;
+  font-weight: 500;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  letter-spacing: 0.5px;
+  font-family: -apple-system, 'SF Pro Display', 'Inter', 'Helvetica Neue', system-ui, sans-serif;
+}
+
+.btn-organic:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(156, 175, 136, 0.4);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: #2C2A26;
+  padding: 14px 28px;
+  border-radius: 50px;
+  font-weight: 400;
+  font-size: 16px;
+  border: 1.5px solid #E8E2D5;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  letter-spacing: 0.5px;
+  font-family: -apple-system, 'SF Pro Display', 'Inter', 'Helvetica Neue', system-ui, sans-serif;
+}
+
+.btn-ghost:hover {
+  border-color: #9CAF88;
+  color: #7A8F6B;
+  transform: translateY(-2px);
+}
+
+/* PREMIUM ANIMATION TIMING SYSTEM */
+/* Systemiske timing tokens for konsistent brukeropplevelse */
+.micro-interaction {
+  transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.micro-interaction:hover {
+  color: #7A8F6B; /* sage_dark */
+}
+
+/* Animation timing classes */
+.transition-micro {
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.transition-standard {
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.transition-complex {
+  transition-duration: 350ms;
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Fade in animation */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Header styles matching original EXACTLY */
+.header-blur {
+  backdrop-filter: blur(20px);
+  background: rgba(253, 252, 247, 0.8);
+  border-bottom: 1px solid rgba(232, 226, 213, 0.5);
+}
+
+.logo-hover {
+  transition: all 0.3s ease;
+}
+
+.logo-hover:hover {
+  transform: scale(1.05);
+}
+
+
+/* Mobile adjustments - exact match to original */
+@media (max-width: 768px) {
+  .header-mobile {
+    height: 6rem; /* 96px on mobile */
+  }
+  
+  .logo-mobile {
+    height: 4rem; /* 64px on mobile */
+  }
+  
+  .actions-mobile {
+    gap: 0.5rem; /* 8px on mobile */
+  }
+  
+  body {
+    padding-top: 6rem; /* 96px for mobile header */
+  }
+}
+
+/* Footer border hover effect */
+.hover\:border-sage_dark:hover {
+  border-color: #7A8F6B;
+}
+
+/* Footer styling - exact match to original */
+.footer-bg-original {
+  background: rgba(232, 226, 213, 0.2); /* EXACT original color */
+}
+
+.border-original {
+  border-color: rgba(232, 226, 213, 0.3); /* EXACT original border */
+}
+
+.line-height-original {
+  line-height: 1.6; /* EXACT original line-height */
+}
+
+/* Footer list styling - exact match */
+.footer-list li {
+  margin-bottom: 0.75rem; /* EXACT original spacing */
+}
+
+.footer-list li:last-child {
+  margin-bottom: 0; /* Remove margin from last item */
+}
+
+/* Newsletter heading - Georgia font as specified */
+.newsletter-heading {
+  font-family: ui-serif, Georgia, Cambria, serif;
+  font-weight: 300;
+  font-size: 30px;
+  line-height: 36px;
+  color: rgb(253, 252, 247);
+}
+
+/* Newsletter description - Georgia font as specified */
+.newsletter-description {
+  font-family: ui-serif, Georgia, Cambria, serif;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 28px;
+  color: rgba(253, 252, 247, 0.7);
+}
+
+/* Newsletter input - Inter font as specified */
+.newsletter-input {
+  font-family: -apple-system, "SF Pro Display", Inter, "Helvetica Neue", system-ui, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 26px;
+  color: rgb(253, 252, 247);
+}
+
+/* Newsletter privacy text - Georgia font as specified */
+.newsletter-privacy {
+  font-family: ui-serif, Georgia, Cambria, serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 26px;
+  color: rgba(253, 252, 247, 0.5); /* warm_white/50 for dark background */
+}
+
+/* HERO TYPOGRAPHY - ULTRA HIGH SPECIFICITY TO OVERRIDE EVERYTHING */
+/* Hero title 'Naturlig' - Georgia font as specified */
+body h1 span.hero-naturlig,
+h1 span.hero-naturlig,
+span.hero-naturlig,
+.hero-naturlig {
+  font-family: ui-serif, Georgia, Cambria, serif !important;
+  font-weight: 300 !important;
+  font-size: 60px !important;
+  line-height: 60px !important;
+  color: rgb(44, 42, 38) !important;
+}
+
+/* Hero title 'velvære' - Inter font as specified */
+body h1 span.hero-velvare,
+h1 span.hero-velvare,
+span.hero-velvare,
+.hero-velvare {
+  font-family: -apple-system, "SF Pro Display", Inter, "Helvetica Neue", system-ui, sans-serif !important;
+  font-weight: 400 !important;
+  font-size: 60px !important;
+  line-height: 60px !important;
+  color: rgb(156, 175, 136) !important; /* sage color */
+}
+
+/* Hero title 'for kropp og sjel' - Georgia font as specified */
+body h1 span.hero-subtitle,
+h1 span.hero-subtitle,
+span.hero-subtitle,
+.hero-subtitle {
+  font-family: ui-serif, Georgia, Cambria, serif !important;
+  font-weight: 300 !important;
+  font-size: 60px !important;
+  line-height: 60px !important;
+  color: rgb(44, 42, 38) !important;
+}
+
+/* Hero description 'Opplev harmonien' - Georgia font as specified */
+.hero-description {
+  font-family: ui-serif, Georgia, Cambria, serif;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 28px;
+  color: rgba(44, 42, 38, 0.8);
+}
+
+/* Products section text - Inter font as specified */
+.products-section-text {
+  font-family: -apple-system, "SF Pro Display", Inter, "Helvetica Neue", system-ui, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 24px;
+  color: rgb(0, 0, 0);
+}
+
+/* Philosophy quote - Georgia italic font as specified */
+.philosophy-quote {
+  font-family: ui-serif, Georgia, Cambria, serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 28px;
+  color: rgba(44, 42, 38, 0.7);
+}
+
+/* Products section heading - Georgia font as specified */
+.products-section-heading {
+  font-family: ui-serif, Georgia, Cambria, serif;
+  font-weight: 300;
+  font-size: 36px;
+  line-height: 40px;
+  color: rgb(44, 42, 38);
+}
+
+/* Products section description - Georgia font as specified */
+.products-section-description {
+  font-family: ui-serif, Georgia, Cambria, serif;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 28px;
+  color: rgba(44, 42, 38, 0.7);
+}
+
+/* Hover translate utilities for exact match */
+.hover\:-translate-y-0\.5:hover {
+  transform: translateY(-2px);
+}
+
+/* Footer grid layout - exact match to original */
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
+@media (min-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+  }
+}
+
+/* ACCESSIBILITY UTILITIES */
+/* Screen reader only content */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.focus\:not-sr-only:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: inherit;
+  margin: inherit;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Focus ring improvements */
+.focus-ring {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.focus-ring:focus {
+  outline: 2px solid #9CAF88;
+  outline-offset: 2px;
+}
+
+/* RESPONSIVE TYPOGRAPHY SCALE - Mathematical progression for perfect visual hierarchy */
+
+/* Responsive typography system based on modular scale */
+.text-responsive-hero {
+  font-size: clamp(2rem, 5vw, 4rem);        /* 32px → 64px */
+  line-height: clamp(2.2rem, 5.5vw, 4.4rem); /* 35.2px → 70.4px */
+  font-weight: 300;
+  letter-spacing: -0.03em;
+}
+
+.text-responsive-h1 {
+  font-size: clamp(1.75rem, 4vw, 3rem);     /* 28px → 48px */
+  line-height: clamp(2rem, 4.5vw, 3.3rem);   /* 32px → 52.8px */
+  font-weight: 300;
+  letter-spacing: -0.025em;
+}
+
+.text-responsive-h2 {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);   /* 24px → 36px */
+  line-height: clamp(1.8rem, 3.5vw, 2.6rem); /* 28.8px → 41.6px */
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.text-responsive-h3 {
+  font-size: clamp(1.25rem, 2.5vw, 1.875rem); /* 20px → 30px */
+  line-height: clamp(1.5rem, 3vw, 2.25rem);   /* 24px → 36px */
+  font-weight: 500;
+  letter-spacing: -0.015em;
+}
+
+.text-responsive-body {
+  font-size: clamp(1rem, 1.5vw, 1.125rem);   /* 16px → 18px */
+  line-height: clamp(1.6rem, 2.4vw, 1.8rem); /* 25.6px → 28.8px */
+  font-weight: 300;
+}
+
+.text-responsive-small {
+  font-size: clamp(0.875rem, 1.25vw, 1rem);  /* 14px → 16px */
+  line-height: clamp(1.4rem, 2vw, 1.6rem);   /* 22.4px → 25.6px */
+  font-weight: 400;
+}
+
+/* ERROR HANDLING & EMPTY STATES */
+
+/* Error states */
+.error-state {
+  background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+  border: 1px solid #fca5a5;
+  color: #dc2626;
+  border-radius: 12px;
+  padding: var(--space-4);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.error-input {
+  border-color: #f87171 !important;
+  box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.1) !important;
+}
+
+.error-input:focus {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2) !important;
+}
+
+/* Success states */
+.success-state {
+  background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+  border: 1px solid #6ee7b7;
+  color: #059669;
+  border-radius: 12px;
+  padding: var(--space-4);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* Empty states */
+.empty-state {
+  background: rgba(245, 241, 232, 0.3);
+  border: 2px dashed rgba(156, 175, 136, 0.3);
+  border-radius: 16px;
+  padding: var(--space-12);
+  text-align: center;
+  color: rgba(44, 42, 38, 0.7);
+}
+
+.empty-state-icon {
+  width: 4rem;
+  height: 4rem;
+  background: rgba(156, 175, 136, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-4);
+}
+
+/* Loading states */
+.loading-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(245, 241, 232, 0.3) 0%,
+    rgba(232, 226, 213, 0.5) 50%,
+    rgba(245, 241, 232, 0.3) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+/* Warning states */
+.warning-state {
+  background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%);
+  border: 1px solid #fbbf24;
+  color: #d97706;
+  border-radius: 12px;
+  padding: var(--space-4);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* Mobile-first responsive adjustments */
+@media (max-width: 640px) {
+  .text-responsive-hero {
+    font-size: clamp(1.75rem, 8vw, 2.5rem);  /* Smaller on mobile */
+    line-height: 1.1;
+  }
+  
+  .text-responsive-h1 {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+    line-height: 1.2;
+  }
+}
+
+/* PERFORMANCE OPTIMIZATIONS */
+
+/* GPU acceleration for smooth animations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  perspective: 1000;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: initial !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+  }
+}
+
+/* Will-change optimization for known animations */
+.will-animate {
+  will-change: transform;
+}
+
+.will-animate-opacity {
+  will-change: opacity;
+}
+
+/* ADVANCED MOTION DESIGN */
+
+/* Staggered animations */
+@keyframes stagger-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stagger-item {
+  animation: stagger-in 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.stagger-item:nth-child(1) { animation-delay: 0.1s; }
+.stagger-item:nth-child(2) { animation-delay: 0.2s; }
+.stagger-item:nth-child(3) { animation-delay: 0.3s; }
+.stagger-item:nth-child(4) { animation-delay: 0.4s; }
+.stagger-item:nth-child(5) { animation-delay: 0.5s; }
+.stagger-item:nth-child(6) { animation-delay: 0.6s; }
+
+/* Subtle hover effects */
+.subtle-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.subtle-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(44, 42, 38, 0.15);
+}
+
+/* Scale on hover */
+.scale-hover {
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scale-hover:hover {
+  transform: scale(1.05);
+}
+
+/* Pulse animation for important elements */
+@keyframes pulse-gentle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.pulse-gentle {
+  animation: pulse-gentle 2s ease-in-out infinite;
+}
+
+/* Smooth slide transitions */
+.slide-up {
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slide-up.active {
+  transform: translateY(0);
+}
+
+/* Fade transitions with scale */
+.fade-scale {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.fade-scale.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Professional loading spinner */
+@keyframes professional-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.professional-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(156, 175, 136, 0.2);
+  border-left: 2px solid #9CAF88;
+  border-radius: 50%;
+  animation: professional-spin 1s linear infinite;
+}
+
+/* Smooth page transitions */
+.page-transition {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.page-transition.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* FINAL HERO TYPOGRAPHY OVERRIDE - LOADED LAST TO PREVENT RACE CONDITIONS */
+span.hero-naturlig[class*="hero"] {
+  font-family: ui-serif, Georgia, Cambria, serif !important;
+  font-weight: 300 !important;
+  font-size: 60px !important;
+  line-height: 60px !important;
+  color: rgb(44, 42, 38) !important;
+}
+
+span.hero-velvare[class*="hero"] {
+  font-family: -apple-system, "SF Pro Display", Inter, "Helvetica Neue", system-ui, sans-serif !important;
+  font-weight: 400 !important;
+  font-size: 60px !important;
+  line-height: 60px !important;
+  color: rgb(156, 175, 136) !important;
+}
+
+span.hero-subtitle[class*="hero"] {
+  font-family: ui-serif, Georgia, Cambria, serif !important;
+  font-weight: 300 !important;
+  font-size: 60px !important;
+  line-height: 60px !important;
+  color: rgb(44, 42, 38) !important;
+}
