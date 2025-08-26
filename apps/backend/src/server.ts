@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
-// Load environment variables first
-dotenv.config();
+import path from 'path';
+// Load environment variables from unified root .env file
+dotenv.config({ path: path.resolve(__dirname, '../../../.env') });
 
 // Initialize monitoring before importing anything else
 // import { initializeMonitoring } from '@/config/monitoring.simple';
