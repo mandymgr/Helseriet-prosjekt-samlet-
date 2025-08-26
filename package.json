@@ -1,0 +1,32 @@
+{
+  "name": "helseriet-projekt",
+  "version": "1.0.0",
+  "description": "Norwegian e-commerce platform for health and wellness products",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
+    "dev:frontend": "cd helseriet-frontend && npm run dev",
+    "dev:backend": "cd helseriet-backend && npm run dev",
+    "start:clean": "npm run cleanup && npm run dev",
+    "cleanup": "./scripts/cleanup.sh",
+    "check:processes": "ps aux | grep -E '(node|vite|tsx)' | grep -v grep",
+    "build": "npm run build:frontend && npm run build:backend",
+    "build:frontend": "cd helseriet-frontend && npm run build",
+    "build:backend": "cd helseriet-backend && npm run build",
+    "test": "cd helseriet-backend && npm test",
+    "lint": "cd helseriet-frontend && npm run lint && cd ../helseriet-backend && npm run lint",
+    "typecheck": "cd helseriet-backend && npm run typecheck"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "private"
+  },
+  "license": "MIT",
+  "private": true
+}
